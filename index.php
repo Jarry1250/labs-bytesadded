@@ -90,5 +90,65 @@
 		}
 		echo '</ul>';
 	}
-
+	?>
+	<script type="text/javascript">
+	// Basically just use the bit of Modernizr we need for Modernizr.inputtypes.date
+	var Modernizr = { 'inputtypes': {} },
+		inputElem = document.createElement( 'input' ), smile = ':)';
+	inputElem.setAttribute( 'type', 'date' );
+	if ( inputElem.type !== 'text' ) {
+		inputElem.value = smile;
+		inputElem.style.cssText = 'position:absolute;visibility:hidden;';
+		Modernizr.inputtypes.date = ( inputElem.value != smile );
+	} else {
+		Modernizr.inputtypes.date = false;
+	}
+	</script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="date-polyfill.min.js"></script>
+	<style type="text/css">
+		/* !HTML5 Date polyfill | Jonathan Stipe | https://github.com/jonstipe/date-polyfill */
+		button.date-datepicker-button:after {
+			display: inline-block;
+			content: "";
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0.4em 0.4em 0em 0.4em;
+			border-color: black transparent transparent transparent;
+			margin: 0em 0em 0.2em 0.7em;
+			vertical-align: middle;
+		}
+		.csstransitions div.date-calendar-dialog.date-closed {
+			-moz-transition: opacity 0.4s linear;
+			-webkit-transition: opacity 0.4s linear;
+			-o-transition: opacity 0.4s linear;
+			-ms-transition: opacity 0.4s linear;
+			transition: opacity 0.4s linear;
+			opacity: 0;
+		}
+		.csstransitions div.date-calendar-dialog.date-open {
+			-moz-transition: opacity 0.4s linear;
+			-webkit-transition: opacity 0.4s linear;
+			-o-transition: opacity 0.4s linear;
+			-ms-transition: opacity 0.4s linear;
+			transition: opacity 0.4s linear;
+			opacity: 1;
+		}
+		/* My own additions */
+		.ui-datepicker {
+			background: white;
+			padding: 5px;
+		}
+		.ui-datepicker a {
+			margin: 5px;
+			text-decoration: underline;
+		}
+		.ui-datepicker-title {
+			width: 50%;
+			display: inline;
+			font-weight: bold;
+		}
+	</style>
+<?php
 	echo get_html( 'footer' );
