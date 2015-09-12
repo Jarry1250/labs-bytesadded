@@ -82,11 +82,11 @@
 		$grandNetTotal = array_sum( $netTotals );
 		$grandAbsTotal = array_sum( $absTotals );
 		$grandFilteredAbsTotal = array_sum( $filteredAbsTotals );
-		$filteredNote = ( $grandFilteredAbsTotal == $grandAbsTotal ) ? '' : ", $grandFilteredAbsTotal (filtered -- check manually)";
+		$filteredNote = ( $grandFilteredAbsTotal == $grandAbsTotal ) ? '' : ", <span id=\"grandFilteredAbsTotal\">$grandFilteredAbsTotal</span> (filtered -- check manually)";
 
-		echo "<p>Found contributions for $username between $start and $end in the article namespace. Grand total: $grandNetTotal (net), $grandAbsTotal (absolute)$filteredNote</p><ul>";
+		echo "<p id=\"intro\">Found contributions for $username between $start and $end in the article namespace. Grand total: <span id=\"grandNetTotal\">$grandNetTotal</span> (net), <span id=\"grandAbsTotal\">$grandAbsTotal</span> (absolute)$filteredNote</p><ul>";
 		foreach( $byPage as $title => $sizeDiffs ){
-			echo "<li><strong>$title</strong>: " . $netTotals[$title] . ' net ' . $absTotals[$title] . ' absolute ([' . implode( '], [', $sizeDiffs ) . '])</li>';
+			echo "<li data-filteredabstotal=\"$filteredAbsTotals[$title]\"><strong>$title</strong>: <span class=\"netTotal\">{$netTotals[$title]}</span> net <span class=\"absTotal\">{$absTotals[$title]}</span> absolute ([" . implode( '], [', $sizeDiffs ) . '])</li>';
 		}
 		echo '</ul>';
 	}
