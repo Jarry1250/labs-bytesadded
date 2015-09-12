@@ -173,11 +173,11 @@
 			opacity: 1;
 		}
 		/* My own additions */
-		.ui-datepicker {
+		.ui-datepicker-inline {
 			background: white;
 			padding: 5px;
 		}
-		.ui-datepicker a {
+		.ui-datepicker-inline a {
 			margin: 5px;
 			text-decoration: underline;
 		}
