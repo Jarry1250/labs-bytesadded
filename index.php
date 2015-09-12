@@ -92,6 +92,43 @@
 	}
 	?>
 	<script type="text/javascript">
+		var updateTotals = function () {
+			var grandNetTotal = 0, grandAbsTotal = 0, grandFilteredAbsTotal = 0, $lis = $( 'li' ).not( '.excluded' );
+			$lis.find( '.netTotal' ).each( function () {
+				grandNetTotal += parseInt( $( this ).text() );
+			} );
+			$lis.find( '.absTotal' ).each( function () {
+				grandAbsTotal += parseInt( $( this ).text() );
+			} );
+			$lis.each( function () {
+				grandFilteredAbsTotal += parseInt( $( this ).data( 'filteredabstotal' ) );
+			} );
+			$( '#grandNetTotal' ).text( grandNetTotal );
+			$( '#grandAbsTotal' ).text( grandAbsTotal );
+			$( '#grandFilteredAbsTotal' ).text( grandFilteredAbsTotal );
+		};
+		$( 'li' ).each( function () {
+			var $this = $( this );
+			$this.click( function() {
+				if( $this.hasClass( 'excluded' ) ) {
+					$this.removeClass( 'excluded' );
+				} else {
+					$this.addClass( 'excluded' );
+				}
+				updateTotals();
+			} );
+		} );
+		$( '<br/>' ).appendTo( '#intro' );
+		$( '<br/>' ).appendTo( '#intro' );
+		$( '<button>' ).click( function() {
+			$( 'li' ).not( '.excluded' ).addClass( 'excluded' );
+			updateTotals();
+		} ).text( 'Deselect all' ).appendTo( '#intro' );
+		$( '<button>' ).click( function() {
+			$( '.excluded' ).removeClass( 'excluded' );
+			updateTotals();
+		} ).text( 'Select all' ).appendTo( '#intro' );
+
 	// Basically just use the bit of Modernizr we need for Modernizr.inputtypes.date
 	var Modernizr = { 'inputtypes': {} },
 		inputElem = document.createElement( 'input' ), smile = ':)';
@@ -148,6 +185,18 @@
 			width: 50%;
 			display: inline;
 			font-weight: bold;
+		}
+		li {
+			list-style-type: none;
+		}
+		li:before {
+			content: '✔    ';
+		}
+		.excluded {
+			color: #CCC;
+		}
+		.excluded:before {
+			content: '✖    ';
 		}
 	</style>
 <?php
