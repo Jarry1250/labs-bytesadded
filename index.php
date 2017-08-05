@@ -141,7 +141,7 @@
 		Modernizr.inputtypes.date = false;
 	}
 	</script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="date-polyfill.min.js"></script>
 	<style type="text/css">
 		/* !HTML5 Date polyfill | Jonathan Stipe | https://github.com/jonstipe/date-polyfill */
